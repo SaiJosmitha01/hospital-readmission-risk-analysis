@@ -1,0 +1,62 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local SQLite databases and related files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Python packaging and coverage output
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Environment variables and local configuration
+.env
+.env.*
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Project data files
+data/raw/*.csv
+data/processed/*.csv
+data/model_output/*.csv
+
+# Keep folder structure in Git
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/model_output/.gitkeep

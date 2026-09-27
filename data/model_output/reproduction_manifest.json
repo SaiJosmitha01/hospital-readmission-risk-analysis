@@ -1,0 +1,203 @@
+{
+  "purpose": "Reproduction of finalized configurations, not new tuning or model selection",
+  "source_data": "data/processed/diabetic_data_cleaned.csv",
+  "source_data_sha256": "b4cef0ba8263fe567face147b00d779e37382fd20e8f4525164c179e3f1421a1",
+  "source_cells_sha256": {
+    "2": "58eeca0bd84641186715d76d96a26534cd3dfe82d2a6e1532002e892e40a5306",
+    "4": "c258fd710a09c983104f2583746bd0ab050018400fc5be19120f796e2415cda4",
+    "6": "b1155489a2b3b414283626e33623ecc2282132d37f6d5c9cbb7adda23af964c2",
+    "8": "cfb7acb0597e105cb4e7243632e710e0589ceb0d944c124c704e9f80eaafbbc6",
+    "13": "56ab98cf1301f6619731ba96262add8f72ec600c71f7cb23ea61c464dfc88ee4",
+    "15": "ee2f79c006b5170bc312090c359c120cee6ecabefe1bf08b1e6c0f8c6cf80e2a",
+    "48": "24fc6f29848617374662808ddce40d7ecd9034358029bea544968e238b9743f2"
+  },
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit_learn": "1.9.0"
+  },
+  "split": {
+    "method": "Original first fold of StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)",
+    "train_rows": 81410,
+    "evaluation_rows": 20353,
+    "train_patients": 57175,
+    "evaluation_patients": 14340,
+    "patient_overlap": 0,
+    "train_positions_hash": "a1f937f039b1e01c2d2a23f21bea088e",
+    "evaluation_positions_hash": "37535fa48e201d8c1694f7ea44eac5fc"
+  },
+  "predictors": [
+    "race",
+    "gender",
+    "age",
+    "admission_type_id",
+    "admission_source_id",
+    "time_in_hospital",
+    "medical_specialty",
+    "num_lab_procedures",
+    "num_procedures",
+    "number_outpatient",
+    "number_emergency",
+    "number_inpatient",
+    "diag_1",
+    "diag_2",
+    "diag_3",
+    "number_diagnoses",
+    "max_glu_serum",
+    "A1Cresult",
+    "num_medications",
+    "metformin",
+    "repaglinide",
+    "nateglinide",
+    "chlorpropamide",
+    "glimepiride",
+    "acetohexamide",
+    "glipizide",
+    "glyburide",
+    "tolbutamide",
+    "pioglitazone",
+    "rosiglitazone",
+    "acarbose",
+    "miglitol",
+    "troglitazone",
+    "tolazamide",
+    "examide",
+    "citoglipton",
+    "insulin",
+    "glyburide-metformin",
+    "glipizide-metformin",
+    "glimepiride-pioglitazone",
+    "metformin-rosiglitazone",
+    "metformin-pioglitazone",
+    "change",
+    "diabetesMed"
+  ],
+  "exclusions": {
+    "readmit_30_flag": "Target itself: direct duplication / leakage",
+    "readmitted": "Future outcome: directly determines the binary target",
+    "encounter_id": "Encounter identifier: no clinical predictor meaning",
+    "patient_nbr": "Patient identifier: retain separately for future grouped splitting",
+    "discharge_disposition_id": "Conservative exclusion: outcome-proximal discharge status"
+  },
+  "parameters": {
+    "Logistic Regression": {
+      "C": 0.1,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 2000,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "liblinear",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "Random Forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "max_depth": 20,
+      "max_features": 0.1,
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 10,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 200,
+      "n_jobs": 2,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    }
+  },
+  "validation": {
+    "Logistic Regression": {
+      "metrics": {
+        "accuracy": 0.8879772023780278,
+        "positive_precision": 0.44285714285714284,
+        "positive_recall": 0.013644366197183098,
+        "positive_F1": 0.026473099914602904,
+        "ROC_AUC": 0.6477971341404993,
+        "average_precision": 0.19863333851803727
+      },
+      "counts": [
+        18042,
+        39,
+        2241,
+        31
+      ]
+    },
+    "Random Forest": {
+      "metrics": {
+        "accuracy": 0.6965066574952096,
+        "positive_precision": 0.1791290057518488,
+        "positive_recall": 0.47975352112676056,
+        "positive_F1": 0.2608591599856408,
+        "ROC_AUC": 0.6513967418525867,
+        "average_precision": 0.19931070111347374
+      },
+      "counts": [
+        13086,
+        4995,
+        1182,
+        1090
+      ]
+    }
+  },
+  "expected_saved_results": {
+    "Logistic Regression": {
+      "counts": [
+        18042,
+        39,
+        2241,
+        31
+      ],
+      "accuracy": 0.88798,
+      "positive_precision": 0.44286,
+      "positive_recall": 0.01364,
+      "positive_F1": 0.02647,
+      "ROC_AUC": 0.6478,
+      "average_precision": 0.19863
+    },
+    "Random Forest": {
+      "counts": [
+        13086,
+        4995,
+        1182,
+        1090
+      ],
+      "accuracy": 0.69651,
+      "positive_precision": 0.17913,
+      "positive_recall": 0.47975,
+      "positive_F1": 0.26086,
+      "ROC_AUC": 0.6514,
+      "average_precision": 0.19931
+    }
+  },
+  "metric_absolute_tolerance": 5.1e-06,
+  "confusion_counts_exact": true,
+  "reproduction_fit_count": 2,
+  "search_fit_count": 0,
+  "prediction_calls_per_model": 1,
+  "files": {
+    "Logistic Regression": {
+      "file": "tuned_logistic_regression_evaluation_probabilities.npz",
+      "sha256": "dbbdb484fc30f13386884bce22d003c3d9495e54fd9052c1600ac1b4d4d457d4"
+    },
+    "Random Forest": {
+      "file": "tuned_random_forest_evaluation_probabilities.npz",
+      "sha256": "8261052dd3013fd49abfd6c61e852e4b2d1fc51e9f96034c1bc3660d6eb50790"
+    }
+  },
+  "alignment": "Zero-based source CSV data-row position; file order is original evaluation order. No patient identifiers."
+}
